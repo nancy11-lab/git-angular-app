@@ -1,0 +1,34 @@
+ <!-- Register -->
+ <div class="container">
+    <form #myForm="ngForm" class="login">
+        <h4 class="login__header">
+            Register An Account
+        </h4>
+        <div class="form-group"  [ngClass]="{'invalid': textInputEmail.invalid && textInputEmail.touched}">
+            <label for="">E-mail Address</label>
+            <input #textInputEmail="ngModel" [(ngModel)]="person.email" type="email" required class="form-control" type="text" name="emailName" id="">
+        </div>
+        <div *ngIf="textInputEmail.errors && (textInputEmail.invalid || textInputEmail.touched)">
+            <small class="text-danger" *ngIf="textInputEmail.errors.required">E-mail Address is required</small>
+        </div>
+        <div class="form-row">
+            <div class="form-group" [ngClass]="{'invalid': textInputPassword.invalid && textInputPassword.touched}">
+                <label for="">Password</label>
+                <input   minlength=8 #textInputPassword="ngModel" [(ngModel)]="person.password" required class="form-control" type="password" name="Password" id="">
+            </div>
+            <div class="form-group" [ngClass]="{'invalid':repeatedPassword .invalid && repeatedPassword.touched }">
+                <label for="">Re-enter Password</label>
+                <input #repeatedPassword="ngModel"  ngValidateEqual="Password" [(ngModel)]="person.repeatedPassword" required class="form-control" type="password" name="repeatedPassword" id="">
+               
+            </div>
+        </div>
+
+        <div class="login__remember-me">
+            <div class="add-product__actions">
+                <button href="#" class="btn btn--gray">Cancel</button>
+                <button (click)="onSubmit(myForm)" [disabled]="myForm.invalid" href="#" class="btn btn--primary">Register</button>
+            </div>
+        </div>
+        <a href="#" class="login__register-now">You are alredy a member?</a>
+    </form>
+</div>
